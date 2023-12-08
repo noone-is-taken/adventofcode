@@ -1,0 +1,22 @@
+day 4 
+bingo problem
+
+part 1
+
+the problem is telling witch boards is the first wining one. 
+
+
+pseudo code
+
+store input
+    array of wining numbers -> normal array of ints
+    array of boards -> 2d matrix of ints
+
+
+loop through wining numbers
+    loop through boards
+        mark current wining number in the boards
+        if current row or column is all marked
+            calcul the score
+        else continue 
+
