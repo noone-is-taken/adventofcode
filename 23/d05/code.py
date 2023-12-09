@@ -14,21 +14,32 @@
 #98    50
 #99    51
 
-file = open('./input.txt')
+file = open('./input_d.txt')
 
-data = []
+
+seeds = file.readline()
+seeds_to_soil = []
+soil_to_fert = []
+fer_to_wat = []
+water_to_light = []
+light_to_temp = []
+temp_to_hum = []
+
+n_map = 0
 for line in file:
-    line = line.split(' ')
-    res = {}
-    res['source_start'] = line[1]
-    res['length'] = line[2]
+    if line == '\n':
+        n_map += 1
+        file.readline()
+        continue
+    if n_map == 1:
+        
+        line = line.split(' ')
+        line[-1] = line[-1].replace('\n','')
+        print(line)
+        mapp = [x for x in line if x != '']
 
-    data.append(res)
+        seeds_to_soil.append(mapp)
 
-source_map = {}
 
-for line in data:
-    for x in range(line['source_start'], line['source_start']+line['length']):
-        if x in source_map:
-            print('choque')
-        source_map[x] = 1
+file.close()
+print(seeds_to_soil)
