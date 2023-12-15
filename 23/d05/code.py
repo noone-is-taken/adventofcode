@@ -1,45 +1,37 @@
-#maping sistem! very complicado
-
-#input:
-#seeds: 79 14 55 13
-
-#seeds to soil map:
-#50 98 2
-#52 50 48
-
-#la primera linia basicament diu: del 98 canviarem a 50
-#aixi que la sequencia seria:
-#96    98
-#97    99
-#98    50
-#99    51
-
-file = open('./input_d.txt')
-
-
-seeds = file.readline()
-seeds_to_soil = []
-soil_to_fert = []
-fer_to_wat = []
-water_to_light = []
-light_to_temp = []
-temp_to_hum = []
-
-n_map = 0
-for line in file:
+maps = {}
+current_map = ''
+maps_order = []
+for line in open('input.txt'):
     if line == '\n':
-        n_map += 1
-        file.readline()
         continue
-    if n_map == 1:
-        
-        line = line.split(' ')
-        line[-1] = line[-1].replace('\n','')
-        print(line)
-        mapp = [x for x in line if x != '']
+    if ':' in line:
+        line = line.split(':')
+        if line[0] == 'seeds':
+            seeds = [int(x) for x in line[1][1:].split(' ')]
+           # group1 = [x for x in range(seeds[0],seeds[0]+seeds[1])]
+           # group2 = [x for x in range(seeds[2],seeds[2]+seeds[3])]
+           # seeds = group1 + group2
+        elif 'map' in line[0]:
+            current_map = line[0].split(' ')[0]
+            maps_order.append(current_map)
+        else:
+            maps[current_map] = numbers
 
-        seeds_to_soil.append(mapp)
+    else:
+        numbers = [int(x) for x in line.split(' ')]
+        if current_map not in maps:
+            maps[current_map] = []
+        maps[current_map].append(numbers)
+print(seeds)
+seed_result = []
+for seed in seeds:
+    targ = seed
+    for index_map in range(len(maps)):
+        for line in maps[maps_order[index_map]]:
+            if targ >= line[1] and targ <= line[1]+line[2]:
+                targ = targ + line[0] - line[1]
+                break
+        #print(maps_order[index_map]+' '+str(targ))
+    seed_result.append(targ)
 
-
-file.close()
-print(seeds_to_soil)
+print(min(seed_result))
