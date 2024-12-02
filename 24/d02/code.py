@@ -1010,7 +1010,6 @@ r = []
 for level in reports:
     r.append([int(x) for x in level.split(' ')])
 
-
 res = 0
 for l in r:
     i = 0
