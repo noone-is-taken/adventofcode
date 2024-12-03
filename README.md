@@ -6,3 +6,4 @@ yearly problems of [aoc](https://adventofcode.com/) solved by me in various prog
 ## Current programing languajes used:
 * Python
 * C++
+* VIM 
